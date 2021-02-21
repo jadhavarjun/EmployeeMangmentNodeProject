@@ -1,13 +1,13 @@
-const Controller = require('../Controller/sampleController')
+const Controller = require('../Controller/employeeController')
 let controller1 = new Controller()
 module.exports = (app) => {
-    app.get("/get", controller1.getData)
+    app.get("/employee/get", controller1.getData)
 
-    app.get("/getById/:id", controller1.findById)
+    app.post("/employee/getById/:id", controller1.findById)
 
-    app.post("/create", controller1.create)
+    app.post("/employee/create", controller1.create)
 
-    app.put("/update/:id", controller1.updateData)
+    app.put("/employee/update/:id", controller1.updateData)
 
-    app.delete("/delete/:id", controller1.deleteData)
+    app.delete("/employee/delete/:id", controller1.deleteData)
 } 

@@ -1,15 +1,12 @@
-const sampleService = require('../service/sampleService');
+const sampleService = require('../service/employeeService');
 
 const objService = new sampleService();
 const response = {};
 module.exports = class Controller {
     getData(req, res) {
-        console.log("inside controller");
         try {
             objService.findAll()
                 .then((result) => {
-                    console.log("inside controller. then")
-                    // console.log("pass", req.body);
                     response.data = result.data;
                     response.success = true;
                     response.message = result.message;
@@ -26,12 +23,9 @@ module.exports = class Controller {
     }
 
     create(req, res) {
-        console.log("inside controller");
         try {
             objService.insert(req.body)
                 .then((result) => {
-                    console.log("inside controller. then")
-                    console.log("pass", req.body);
                     response.success = true;
                     response.message = result.message;
                     res.status(200).send(response);
@@ -42,13 +36,9 @@ module.exports = class Controller {
                 });
         } catch (error) {
             console.log(error);
-
         }
-
     }
-
     findById(req, res) {
-        console.log("Inside find record by id Controller");
         console.log(req.params.id);
         try {
             let empid = req.params.id;
@@ -73,8 +63,6 @@ module.exports = class Controller {
         try {
             let newData = req.body.update;
             let empid = req.params.id;
-            console.log("newData", newData);
-            console.log("id", empid);
             objService.updateData(empid, newData)
                 .then((result) => {
                     console.log("pass", req.params);
